@@ -28,7 +28,9 @@
 #include <stdio.h>
 #include "socketlib.h"
 #include <string.h>
+#ifndef WIN32
 #include <sys/socket.h>
+#endif
 #include <sys/types.h>
 #include <unistd.h>
 #include <errno.h>

@@ -6,11 +6,47 @@
 #ifndef _SOCKETLIB_H
 #define _SOCKETLIB_H
 
+#ifdef WIN32
+#include <winsock2.h>
+#include <sys/time.h>
+typedef int socklen_t;
+typedef struct addrinfo {
+  int             ai_flags;
+  int             ai_family;
+  int             ai_socktype;
+  int             ai_protocol;
+  size_t          ai_addrlen;
+  char            *ai_canonname;
+  struct sockaddr  *ai_addr;
+  struct addrinfo  *ai_next;
+};
+#define AI_PASSIVE     1
+#define EAFNOSUPPORT   WSAEAFNOSUPPORT
+#define SIGPIPE 13
+#define INET6_ADDRSTRLEN       46
+#define IN6ADDR_ANY_INIT { { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
+struct in6_addr {
+  union {
+    u_char Byte[16];
+    u_short Word[8];
+  } u;
+};
+const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;
+
+struct sockaddr_in6 {
+  short sin6_family;
+  u_short sin6_port;
+  u_long sin6_flowinfo;
+  struct in6_addr sin6_addr;
+  u_long sin6_scope_id;
+};
+#else
 #include <netdb.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/time.h>
+#endif
 
 
 #define  MAX_SIZE 8192

@@ -32,17 +32,21 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
+#ifdef WIN32
+#include <socketlib.h>
+#else
 #include <sys/socket.h>
 #include <sys/select.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <sys/signal.h>
+#endif
 #include <pthread.h>
 #include <openssl/aes.h>
 #include <math.h>
 #include <sys/stat.h>
 
 #include "hairtunes.h"
-#include <sys/signal.h>
 #include <fcntl.h>
 #ifdef HAS_AO
 #include "ao.h"
