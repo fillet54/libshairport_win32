@@ -11,8 +11,9 @@ AC_PROG_LIBTOOL
 
 # Checks for libraries.
 #AC_CHECK_LIB([c],   [main])
-#AC_CHECK_LIB([m],   [main])
+AC_CHECK_LIB([m],   [main])
 AC_CHECK_LIB([ssl], [main],, AC_MSG_ERROR($missing_library))
+AC_CHECK_LIB([crypto], [main],, AC_MSG_ERROR($missing_library))
 AC_CHECK_LIB([pthread], [main],, AC_MSG_ERROR($missing_library))
 
 OUTPUT_FILES="Makefile"

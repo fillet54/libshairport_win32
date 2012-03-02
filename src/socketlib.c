@@ -82,7 +82,7 @@ int setup_client(struct addrinfo *server_host)
       delay(RETRY_DELAY, &tRes);
     }
   }
-  printf("%d Retry attempts exceeded\n", RETRY_COUNT);
+  xprintf("%d Retry attempts exceeded\n", RETRY_COUNT);
   return ERROR;
 }
 
@@ -102,7 +102,7 @@ int getAddr(char *pHostname, char *pService, int pFamily, int pSockType, struct 
   tError = getaddrinfo(pHostname, pService, &hints, pAddrInfo);
   if(tError != 0)
   {
-    printf("Error getting address info\n");
+    xprintf("Error getting address info\n");
   }
   return tError;
 }
@@ -200,7 +200,7 @@ static int getCorrectedEncodeSize(int pSize)
   else
   {
     // Invalid encoded data, no other cases are possible.
-    printf("Unrecoverable error....base64 values are incorrectly encoded\n");
+    xprintf("Unrecoverable error....base64 values are incorrectly encoded\n");
     return pSize;
   }
 }
@@ -226,7 +226,7 @@ char *decode_base64(unsigned char *pInput, int pLength, int *pActualLength)
     memset(input, 0, length);
     memcpy(input, pInput, pLength);
     memset(input+pLength, '=', length-pLength);
-    printf("Fixed value: [%.*s]\n", length, input);
+    xprintf("Fixed value: [%.*s]\n", length, input);
   }
   char *buffer = (char *)malloc(length);
   memset(buffer, 0, length);
